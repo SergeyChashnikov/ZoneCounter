@@ -6,8 +6,8 @@
 - **Автозагрузка** весов модели YOLOv5 в models/yolov5s.pt, если локальный файл отсутствует.  
 - **Сохранение данных** в БД (SQLite), позволяющее вести логирование обнаруженных треков.  
 - **Два способа запуска**:
-   1. **CLI** (через main.py).
-   2. **Flask** – API (api.py) и Web-интерфейс (app.py).
+   1.**CLI** (через main.py).
+   2.**Flask** – API (api.py) и Web-интерфейс (app.py).
 
 ---
 
@@ -27,13 +27,13 @@
 
 ## 2. Структура репозитория
 ZoneCounter/
-#├── README.md
-├── requirements.txt
-├── .gitignore
-├── Dockerfile                      # (Опционально) для контейнеризации
-├── database/                      # Автосоздаётся (для database.sqlite3)
-├── models/                        # Автосоздаётся (для yolov5s.pt)
-├── src/
+ ├── README.md
+ ├── requirements.txt
+ ├── .gitignore
+ ├── Dockerfile                      # (Опционально) для контейнеризации
+ ├── database/                      # Автосоздаётся (для database.sqlite3)
+ ├── models/                        # Автосоздаётся (для yolov5s.pt)
+ ├── src/
 │   ├── __init__.py
 │   ├── config.py                  # Настройки (папки, пути к БД/модели, пороги)
 │   ├── database.py                # Инициализация SQLAlchemy
