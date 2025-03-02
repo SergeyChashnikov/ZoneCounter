@@ -26,14 +26,14 @@
 ---
 
 ## 2. Структура репозитория
-ZoneCounter/
- ├── README.md
- ├── requirements.txt
- ├── .gitignore
- ├── Dockerfile                      # (Опционально) для контейнеризации
- ├── database/                      # Автосоздаётся (для database.sqlite3)
- ├── models/                        # Автосоздаётся (для yolov5s.pt)
- ├── src/
+ZoneCounter/\\
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── Dockerfile                      # (Опционально) для контейнеризации
+├── database/                      # Автосоздаётся (для database.sqlite3)
+├── models/                        # Автосоздаётся (для yolov5s.pt)
+├── src/
 │   ├── __init__.py
 │   ├── config.py                  # Настройки (папки, пути к БД/модели, пороги)
 │   ├── database.py                # Инициализация SQLAlchemy
