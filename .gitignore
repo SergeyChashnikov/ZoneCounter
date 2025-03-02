@@ -1,1 +1,6 @@
 zonecountenv/
+logs/
+models/
+database/
+src/__pycache__/
+data/

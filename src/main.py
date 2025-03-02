@@ -1,5 +1,6 @@
 import argparse
 import cv2
+from ultralytics import YOLO
 from detection import load_yolov5, detect_people
 from tracking import SimpleCentroidTracker
 from zone_counter import ZoneCounter
@@ -21,7 +22,7 @@ def main():
     db = SessionLocal()
 
     logger.info("Загрузка YOLOv5...")
-    model = load_yolov5('yolov5s')
+    model = load_yolov5()
     tracker = SimpleCentroidTracker()
     zc = ZoneCounter(zone_coords=ZONE_COORDS)
 

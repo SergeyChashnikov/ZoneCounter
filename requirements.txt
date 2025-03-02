@@ -7,3 +7,4 @@ flask
 sqlalchemy
 pytest
 requests
+ultralytics
