@@ -7,7 +7,7 @@
 - **Сохранение данных** в БД (SQLite), позволяющее вести логирование обнаруженных треков.  
 - **Два способа запуска**:
    1. **CLI** (через main.py).
-   2. (Опционально) **Flask** – API (api.py) и Web-интерфейс (app.py).
+   2. **Flask** – API (api.py) и Web-интерфейс (app.py).
 
 ---
 
@@ -26,8 +26,8 @@
 ---
 
 ## 2. Структура репозитория
-ZoneCounter//
-├── README.md/
+ZoneCounter/
+#├── README.md
 ├── requirements.txt
 ├── .gitignore
 ├── Dockerfile                      # (Опционально) для контейнеризации
