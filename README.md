@@ -26,7 +26,7 @@
 ---
 
 ## 2. Структура репозитория
-ZoneCounter/\\
+ZoneCounter/\
 ├── README.md
 ├── requirements.txt
 ├── .gitignore
