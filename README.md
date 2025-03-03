@@ -6,8 +6,8 @@
 - **Автозагрузка** весов модели YOLOv5 в models/yolov5s.pt, если локальный файл отсутствует.  
 - **Сохранение данных** в БД (SQLite), позволяющее вести логирование обнаруженных треков.  
 - **Два способа запуска**:
-      1. **CLI** (через main.py).
-      2. **Flask** – API (api.py) и Web-интерфейс (app.py).
+   1. **CLI** (через main.py).
+   2. **Flask** – API (api.py) и Web-интерфейс (app.py).
 
 ---
 
@@ -34,31 +34,31 @@ ZoneCounter/\
 ├── database/                      # Автосоздаётся (для database.sqlite3)\
 ├── models/                        # Автосоздаётся (для yolov5s.pt)\
 ├── src/\
-│   ├── __init__.py\
-│   ├── config.py                  # Настройки (папки, пути к БД/модели, пороги)\
-│   ├── database.py                # Инициализация SQLAlchemy\
-│   ├── detection.py               # Логика детекции (YOLO)\
-│   ├── tracking.py                # Простой трекер\
-│   ├── zone_counter.py            # Учёт времени в зоне\
-│   ├── models.py                  # SQLAlchemy-модели\
-│   ├── logger.py                  # Настройка логирования\
-│   ├── main.py                    # CLI-сценарий\
-│   ├── api.py                     # Flask API (REST)\
-│   └── app.py                     # Flask Web (HTML-интерфейс)\
+│    ├── __init__.py\
+│    ├── config.py                  # Настройки (папки, пути к БД/модели, пороги)\
+│    ├── database.py                # Инициализация SQLAlchemy\
+│    ├── detection.py               # Логика детекции (YOLO)\
+│    ├── tracking.py                # Простой трекер\
+│    ├── zone_counter.py            # Учёт времени в зоне\
+│    ├── models.py                  # SQLAlchemy-модели\
+│    ├── logger.py                  # Настройка логирования\
+│    ├── main.py                    # CLI-сценарий\
+│    ├── api.py                     # Flask API (REST)\
+│    └── app.py                     # Flask Web (HTML-интерфейс)\
 ├── templates/                     # HTML-шаблоны (для app.py)\
-│   ├── index.html\
-│   └── results.html\
+│    ├── index.html\
+│    └── results.html\
 ├── notebooks/                     # (Опционально) Демонстрационные Jupyter-ноутбуки\
-│   └── experiments.ipynb\
+│    └── experiments.ipynb\
 ├── tests/                         # Тесты (pytest)\
-│   ├── __init__.py\
-│   ├── test_detection.py\
-│   ├── test_zone_counter.py\
-│   ├── test_api.py\
-│   └── test_models.py\
+│    ├── __init__.py\
+│    ├── test_detection.py\
+│    ├── test_zone_counter.py\
+│    ├── test_api.py\
+│    └── test_models.py\
 └── data/\
-    ├── images/\
-    └── videos/\
+     ├── images/\
+     └── videos/\
     
 
 ### Ключевые файлы
