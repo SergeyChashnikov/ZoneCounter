@@ -1,0 +1,7 @@
+numpy>=1.21
+opencv-python>=4.7
+openvino>=2023.0    # OpenVINO Runtime
+bytetracker>=0.0.1  # обёртка ByteTrack
+influxdb-client>=1.36
+flask>=2.0
+ultralytics>=8.0.14
