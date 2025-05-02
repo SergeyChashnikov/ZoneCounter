@@ -3,14 +3,14 @@ __pycache__
 drafts
 logs
 #**.mp4
-**.engine
+#**.engine
 videos_out
 test.ipynb
 services
 myenv
 Dockerfile
 web.py
-**env**
+#**env**
 Dockerfile
 test.ipynb
 yolo8venv
@@ -21,4 +21,5 @@ test_videos/test_video.mp4
 weights/yolov5n.pt
 weights/yolov5s.pt
 weights/yolov8s.pt
-weights/yolov8m_int8_openvino_model
+weights/yolov8m_int8_openvino_model/
+=2024.5
