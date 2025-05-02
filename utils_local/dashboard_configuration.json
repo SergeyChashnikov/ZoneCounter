@@ -129,7 +129,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT   \r\n  road_1 AS \"Road 1\",\r\n  road_2 AS \"Road 2\",\r\n  road_3 AS \"Road 3\",\r\n  road_4 AS \"Road 4\",\r\n  road_5 AS \"Road 5\"\r\nFROM traffic_info\r\nORDER BY timestamp DESC\r\nLIMIT 1;\r\n",
+          "rawSql": "SELECT   \r\n  zone_1 AS \"Zone 1\",\r\n  zone_2 AS \"Zone 2\",\r\n  zone_3 AS \"Zone 3\",\r\n  zone_4 AS \"Zone 4\",\r\n  zone_5 AS \"Zone 5\"\r\nFROM zone_info\r\nORDER BY timestamp DESC\r\nLIMIT 1;\r\n",
           "refId": "A",
           "sql": {
             "columns": [
@@ -150,7 +150,7 @@
           }
         }
       ],
-      "title": "Загруженность дорог (машин в минуту)",
+      "title": "Загруженность/нарушения зон (люди в минуту)",
       "transparent": true,
       "type": "bargauge"
     },
@@ -159,7 +159,7 @@
         "type": "grafana-postgresql-datasource",
         "uid": "${DS_GRAFANA-POSTGRESQL-DATASOURCE}"
       },
-      "description": "число машин в минуту",
+      "description": "число людей в минуту",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -225,7 +225,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Road 1"
+              "options": "Zone 1"
             },
             "properties": [
               {
@@ -240,7 +240,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Road 2"
+              "options": "Zone 2"
             },
             "properties": [
               {
@@ -255,7 +255,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Road 3"
+              "options": "Zone 3"
             },
             "properties": [
               {
@@ -270,7 +270,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Road 4"
+              "options": "Zone 4"
             },
             "properties": [
               {
@@ -285,7 +285,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Road 5"
+              "options": "Zone 5"
             },
             "properties": [
               {
@@ -327,14 +327,14 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT\r\n  road_1 AS \"Road 1\",\r\n  road_2 AS \"Road 2\",\r\n  road_3 AS \"Road 3\",\r\n  road_4 AS \"Road 4\",\r\n  road_5 AS \"Road 5\",\r\n  timestamp_date\r\nFROM\r\n  traffic_info\r\nORDER BY timestamp_date DESC\r\n\r\n",
+          "rawSql": "SELECT\r\n  zone_1 AS \"Zone 1\",\r\n  zone_2 AS \"Zone 2\",\r\n  zone_3 AS \"Zone 3\",\r\n  zone_4 AS \"Zone 4\",\r\n  zone_5 AS \"Zone 5\",\r\n  timestamp_date\r\nFROM\r\n  zone_info\r\nORDER BY timestamp_date DESC\r\n\r\n",
           "refId": "A",
           "sql": {
             "columns": [
               {
                 "parameters": [
                   {
-                    "name": "road_1",
+                    "name": "zone_1",
                     "type": "functionParameter"
                   }
                 ],
@@ -343,7 +343,7 @@
               {
                 "parameters": [
                   {
-                    "name": "road_2",
+                    "name": "zone_2",
                     "type": "functionParameter"
                   }
                 ],
@@ -352,7 +352,7 @@
               {
                 "parameters": [
                   {
-                    "name": "road_3",
+                    "name": "zone_3",
                     "type": "functionParameter"
                   }
                 ],
@@ -361,7 +361,7 @@
               {
                 "parameters": [
                   {
-                    "name": "road_4",
+                    "name": "zone_4",
                     "type": "functionParameter"
                   }
                 ],
@@ -370,7 +370,7 @@
               {
                 "parameters": [
                   {
-                    "name": "road_5",
+                    "name": "zone_5",
                     "type": "functionParameter"
                   }
                 ],
@@ -396,10 +396,10 @@
             ],
             "limit": 50
           },
-          "table": "traffic_info"
+          "table": "zone_info"
         }
       ],
-      "title": "График изменения загруженности дорог",
+      "title": "График изменения загруженности/нарушения зон",
       "type": "timeseries"
     },
     {
@@ -491,7 +491,7 @@
           "editorMode": "code",
           "format": "table",
           "rawQuery": true,
-          "rawSql": "SELECT timestamp_date, cars FROM traffic_info  ",
+          "rawSql": "SELECT timestamp_date, persons FROM zone_info  ",
           "refId": "A",
           "sql": {
             "columns": [
@@ -507,7 +507,7 @@
               {
                 "parameters": [
                   {
-                    "name": "cars",
+                    "name": "persons",
                     "type": "functionParameter"
                   }
                 ],
@@ -524,10 +524,10 @@
             ],
             "limit": 50
           },
-          "table": "traffic_info"
+          "table": "zone_info"
         }
       ],
-      "title": "Число машин на участке кругового движения",
+      "title": "Число людей на участке видеосъемки",
       "type": "timeseries"
     }
   ],

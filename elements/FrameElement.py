@@ -9,7 +9,7 @@ class FrameElement:
         frame: np.ndarray,
         timestamp: float,
         frame_num: float,
-        roads_info: dict,
+        zones_info: dict,
         frame_result: np.ndarray | None = None,
         detected_conf: list | None = None,
         detected_cls: list | None = None,
@@ -24,7 +24,7 @@ class FrameElement:
         self.frame = frame  # Кадр bgr формата 
         self.timestamp = timestamp  # Значение времени с начала потока (в секундах)
         self.frame_num = frame_num  # Нормер кадра с потока
-        self.roads_info = roads_info  # Словарь с координатми дорог, примыкающих к участку кругового движения
+        self.zones_info = zones_info  # Словарь с координатами зон
         self.frame_result = frame_result  # Итоговый обработанный кадр
         self.timestamp_date = time.time()  # Время в момент обработки кадра unix формат (в секундах)
         # Результаты на выходе с YOLO:
@@ -38,5 +38,5 @@ class FrameElement:
         self.id_list = id_list  # Список обнаруженных id трекуемых объектов
         # Постобработка кадра:
         self.buffer_tracks = buffer_tracks  # Буфер актуальных треков за выбранное время анализа
-        self.info = {}  # Словарь с результирующей статистикой (загруженность дорог + число машин)
+        self.info = {}  # Словарь с результирующей статистикой (загруженность зон + число людей)
         self.send_info_of_frame_to_db = False  # Флаг того, будет ли с это кадра инфа отправлена в бд

@@ -36,12 +36,12 @@ class VideoReader:
             self.stream.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
             self.stream.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
 
-        # Чтение данных из файла JSON (информация о координатах въезда и выезда дорог)
-        with open(config["roads_info"], "r") as file:
+        # Чтение данных из файла JSON (информация о координатах зон)
+        with open(config["zones_info"], "r") as file:
             data_json = json.load(file)
 
-        # Преобразование данных координат дорог в формат int
-        self.roads_info = {
+        # Преобразование данных координат зон в формат int
+        self.zones_info = {
             key: [int(value) for value in values] for key, values in data_json.items()
         }
 
@@ -84,4 +84,4 @@ class VideoReader:
 
             frame_number += 1
 
-            yield FrameElement(self.video_source, frame, timestamp, frame_number, self.roads_info)
+            yield FrameElement(self.video_source, frame, timestamp, frame_number, self.zones_info)

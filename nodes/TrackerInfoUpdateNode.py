@@ -45,16 +45,16 @@ class TrackerInfoUpdateNode:
                 # Обновление времени последнего обнаружения
                 self.buffer_tracks[id].update(frame_element.timestamp)
 
-            # Поиск первого пересечения с полигонами дорог
-            if self.buffer_tracks[id].start_road is None:
-                self.buffer_tracks[id].start_road = intersects_central_point(
+            # Поиск первого пересечения с полигонами зон
+            if self.buffer_tracks[id].start_zone is None:
+                self.buffer_tracks[id].start_zone = intersects_central_point(
                     tracked_xyxy=frame_element.tracked_xyxy[i],
-                    polygons=frame_element.roads_info,
+                    polygons=frame_element.zones_info,
                 )
-                # Проверка того, что отработка функции дала наконец-то актуальный номер дороги:
-                if self.buffer_tracks[id].start_road is not None:
+                # Проверка того, что отработка функции дала наконец-то актуальный номер зоны:
+                if self.buffer_tracks[id].start_zone is not None:
                     # Тогда сохраняем время такого момента:
-                    self.buffer_tracks[id].timestamp_init_road = frame_element.timestamp
+                    self.buffer_tracks[id].timestamp_init_zone = frame_element.timestamp
 
         # Удаление старых айдишников из словаря если их время жизни > size_buffer_analytics
         keys_to_remove = []

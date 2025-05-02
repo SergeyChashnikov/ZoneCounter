@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class SendInfoDBNode:
-    """Модуль для отправки актуальной информации о трафике в базу данных"""
+    """Модуль для отправки актуальной информации о зонах в базу данных"""
 
     def __init__(self, config: dict) -> None:
         config_db = config["send_info_db_node"]
@@ -62,12 +62,12 @@ class SendInfoDBNode:
             id SERIAL PRIMARY KEY,
             timestamp INTEGER,
             timestamp_date TIMESTAMP,
-            cars INTEGER,
-            road_1 FLOAT,
-            road_2 FLOAT,
-            road_3 FLOAT,
-            road_4 FLOAT,
-            road_5 FLOAT
+            persons INTEGER,
+            zone_1 FLOAT,
+            zone_2 FLOAT,
+            zone_3 FLOAT,
+            zone_4 FLOAT,
+            zone_5 FLOAT
         );
         """
 
@@ -110,7 +110,7 @@ class SendInfoDBNode:
         # Формирование и выполнение SQL-запроса для вставки данных в бд
         insert_query = (
             f"INSERT INTO {self.table_name} "
-            "(timestamp, timestamp_date, cars, road_1, road_2, road_3, road_4, road_5) "
+            "(timestamp, timestamp_date, persons, zone_1, zone_2, zone_3, zone_4, zone_5) "
             "VALUES (%s, to_timestamp(%s), %s, %s, %s, %s, %s, %s);"
         )
         try:
@@ -119,29 +119,29 @@ class SendInfoDBNode:
                 (
                     timestamp,
                     timestamp_date,
-                    info_dictionary["cars_amount"],
+                    info_dictionary["persons_amount"],
                     (
-                        info_dictionary["roads_activity"][1]
+                        info_dictionary["zones_activity"][1]
                         if timestamp >= self.buffer_analytics_sec
                         else None
                     ),
                     (
-                        info_dictionary["roads_activity"][2]
+                        info_dictionary["zones_activity"][2]
                         if timestamp >= self.buffer_analytics_sec
                         else None
                     ),
                     (
-                        info_dictionary["roads_activity"][3]
+                        info_dictionary["zones_activity"][3]
                         if timestamp >= self.buffer_analytics_sec
                         else None
                     ),
                     (
-                        info_dictionary["roads_activity"][4]
+                        info_dictionary["zones_activity"][4]
                         if timestamp >= self.buffer_analytics_sec
                         else None
                     ),
                     (
-                        info_dictionary["roads_activity"][5]
+                        info_dictionary["zones_activity"][5]
                         if timestamp >= self.buffer_analytics_sec
                         else None
                     ),

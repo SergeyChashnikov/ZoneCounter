@@ -65,9 +65,16 @@ def intersects_central_point(tracked_xyxy, polygons):
         (tracked_xyxy[0] + tracked_xyxy[2]) / 2,
         (tracked_xyxy[1] + tracked_xyxy[3]) / 2,
     ]
-    center_point = Point(center_point)
+    # Нижняя точка bbox:
+    offset = 10  # offset — смещение вверх
+    bottom_point = [
+        (tracked_xyxy[0] + tracked_xyxy[2]) / 2,   # середина по горизонтали (X)
+        tracked_xyxy[3] - offset,  # offset — смещение вверх
+    ]
+
+    bottom_point = Point(bottom_point)
     for key, polygon in polygons.items():
         polygon = Polygon([(polygon[i], polygon[i + 1]) for i in range(0, len(polygon), 2)])
-        if polygon.contains(center_point):
+        if polygon.contains(bottom_point):
             return int(key)
     return None
