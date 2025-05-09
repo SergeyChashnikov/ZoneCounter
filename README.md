@@ -118,9 +118,9 @@ main
 
 ```mermaid
 graph TD;
-    A["VideoReader<br>Считывает кадры из видеофайла"] --> B["DetectionTrackingNodes<br>Реализует детектирование машин + трекинг"];
+    A["VideoReader<br>Считывает кадры из видеофайла"] --> B["DetectionTrackingNodes<br>Реализует детектирование людей + трекинг"];
     B --> C["TrackerInfoUpdateNode<br>Обновляет информацию об актуальных треках"];
-    C --> D["CalcStatisticsNode<br>Вычисляет загруженность дорог"];
+    C --> D["CalcStatisticsNode<br>Вычисляет загруженность/нарушения зон"];
     D --sent_info_db==False --> F;
     D --sent_info_db==True --> E["SentInfoDBNode<br>Отправляет результаты в базу данных"];
     E --> F["ShowNode<br>Отображает результаты на экране"];
