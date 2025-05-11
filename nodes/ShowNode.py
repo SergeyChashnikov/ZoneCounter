@@ -29,7 +29,7 @@ class ShowNode:
         self.show_track_id_different_colors = config_show_node["show_track_id_different_colors"]
         self.show_info_statistics = config_show_node["show_info_statistics"]
 
-        self.show_number_of_zone = True  # отображение номеров дорог
+        self.show_number_of_zone = True  # отображение номеров зон
 
         # Параметры для шрифтов:
         self.fontFace = 1
@@ -82,14 +82,14 @@ class ShowNode:
                     random.seed(int(id))
                     color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
                 else:
-                    # Отображаем каждый трек согласно цвету пересечения с дорогой
+                    # Отображаем каждый трек согласно цвету пересечения с зоной
                     try:
                         start_road = frame_element.buffer_tracks[int(id)].start_road
                         if start_road is not None:
                             color = self.colors_roads[int(start_road)]
-                        else:  # бокс черным цветом если еще нет информации о стартовой дороге
+                        else:  # бокс черным цветом если еще нет информации о первой зоне
                             color = (0, 0, 0)
-                    except KeyError:  # На случай если машина еще в кадре а трек уже удален
+                    except KeyError:  # На случай если человек еще в кадре а трек уже удален
                         color = (0, 0, 0)
 
                 cv2.rectangle(frame_result, (x1, y1), (x2, y2), color, self.thickness_lines)
@@ -220,7 +220,7 @@ class ShowNode:
             
             # Проверим, что буфер уже наполнился и можно выводить статистику:
             if frame_element.timestamp >= self.buffer_analytics_sec:
-                # Выводим информацию по дорогам
+                # Выводим информацию по зонам
                 for key, value in data_info['zones_activity'].items():
                     text_person = f"  zone {key}: {value:.1f} persons/min"
                     cv2.putText(

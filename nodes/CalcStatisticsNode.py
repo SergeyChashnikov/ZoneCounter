@@ -43,7 +43,7 @@ class CalcStatisticsNode:
             5: 0,
         }  # всего 5 зон (занулим стартовое значение)
 
-        # Посчитаем чило людей которые давно живут и имеют значения зоны захода
+        # Посчитаем чило людей которые давно живут и имеют значения входа в зону
         for _, track_element in buffer_tracks.items():
             if (
                 track_element.timestamp_last - track_element.timestamp_init_zone
