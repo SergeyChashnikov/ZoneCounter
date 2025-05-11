@@ -36,8 +36,8 @@ python main_optimized.py
 
 __Пример работы алгоритма c выводом статистики__: каждая машина отображается цветом, соответствующим дороге, с которой она прибыла к круговому движению + выводится значение числа видимых машин + значения интенсивности входного потока (число машин в минуту с каждой входящей дороги). <br/>Отображается таким образом при выборе в конфигурации show_node.show_info_statistics=True 
 
--![Traffic statistics 1](content_for_readme/with_statistics_1.gif)
--![Traffic statistics 2](content_for_readme/with_statistics_2.gif)
+[Traffic statistics 1](content_for_readme/with_statistics_1.gif)
+[Traffic statistics 2](content_for_readme/with_statistics_2.gif)
 
 Отключить отображение окна со статистикой можно при выборе в конфигурации show_node.show_info_statistics=False <br/>
 Чтобы наблюдать fps обработки как в первом представленном примере, необходимо в конфиге указать show_node.draw_fps_info=True.  <br/>При наличии GPU получается достигнуть порядка 30-40 кадров в секунду в случае запуска __main_optimized.py__
@@ -46,13 +46,13 @@ __Пример работы алгоритма c выводом статисти
 __Пример режима демонстрации трекинга машин__ (каждый id своим уникальным цветом отображается) <br/>
 Отображается таким образом при выборе в конфигурации show_node.show_track_id_different_colors=True 
 
--![Traffic Tracking](content_for_readme/traffic_tracking.gif)
+[Traffic Tracking](content_for_readme/traffic_tracking.gif)
 
 ---
 ## Включение сторонних сервисов для визуализации результатов:
 Программа позволяет вести запись актуальной статистики о машинопотоке в базу данных PostgreSQL и тут же осуществлять визуализацию в виде интерактивного дашборда Grafana.
 
-![Dashboard](content_for_readme/grafana.jpg)
+[Dashboard](content_for_readme/grafana.jpg)
 
 
 Тем самым у конечного потребителя этого приложения имеется возможность запустить код один раз, подключив на вход RTSP поток или заготовленный видеофайл, и постоянно получать актуальную статистику, а также просматривать историю загруженности участка движения.
@@ -71,7 +71,7 @@ python main_optimized.py
 
 Пример того, как в реальном времени строятся графики на дашборде после запуска кода:
 
--![Grafana](content_for_readme/grafana.gif)
+[Grafana](content_for_readme/grafana.gif)
 
 ---
 
@@ -83,7 +83,7 @@ python main_optimized.py
 
 Пример того, как можно запустить проект и иметь возможность одновременно смотреть стрим по порту 8100 и наблюдать интерактивный дашборд в Grafana по порту 3111:
 
--![web+grafana](content_for_readme/web+grafana.gif)
+[web+grafana](content_for_readme/web+grafana.gif)
 
 ---
 
