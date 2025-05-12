@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 services:
 
   pg_data_wh:
@@ -45,16 +45,20 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: admin
       GF_ALLOW_EMBEDDING: "true"
       GF_PANELS_DISABLE_SANITIZE_HTML: "true"
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
     restart: unless-stopped
     depends_on:
       - pg_grafana
     ports:
       - "3111:3000"
     volumes:
-      - ./services/grafana:/var/lib/grafana
+      - ./services/grafana:/var/lib/grafana  #- grafana_data:/var/lib/grafana
     networks:
       - prod_network
 
 networks:
   prod_network:
     driver: bridge
+  
+#volumes:
+#  ./services/grafana:
