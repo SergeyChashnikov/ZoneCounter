@@ -5,6 +5,7 @@ class TrackElement:
         id: int,
         timestamp_first: float,
         start_zone: int | None = None,
+        zone_active: int | None = None,
     ) -> None:
         self.id = id  # Номер этого трека
         self.timestamp_first = timestamp_first  # Таймстемп инициализации (в сек)
@@ -12,6 +13,7 @@ class TrackElement:
         self.start_zone = start_zone  # Номер зоны, в которую зашел
         self.timestamp_init_zone = timestamp_first  # Таймстемп инициализации номера зоны (в сек)
         # ps: если зона не будет определена, то значение останется равным первому появлению
+        self.zone_active = zone_active # флаг в номер зоне трэк или нет
 
     def update(self, timestamp):
         # Обновление времени последнего обнаружения

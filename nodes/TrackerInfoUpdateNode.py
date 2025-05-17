@@ -15,7 +15,7 @@ class TrackerInfoUpdateNode:
         config_general = config["general"]
 
         self.size_buffer_analytics = (
-            config_general["buffer_analytics"] * 60
+            config_general["buffer_analytics"] * 2
         )  # число секунд в буфере аналитики
         # добавим мин времени жизни чтобы при расчете статистики были именно
         # люди за последие buffer_analytics минут:
@@ -55,6 +55,22 @@ class TrackerInfoUpdateNode:
                 if self.buffer_tracks[id].start_zone is not None:
                     # Тогда сохраняем время такого момента:
                     self.buffer_tracks[id].timestamp_init_zone = frame_element.timestamp
+
+            # Поиск пересечения с полигонами зон
+            zone_active = intersects_central_point(
+                    tracked_xyxy=frame_element.tracked_xyxy[i],
+                    polygons=frame_element.zones_info,
+                )
+            if zone_active is not None:
+                self.buffer_tracks[id].zone_active = zone_active
+            else:
+                self.buffer_tracks[id].zone_active = None
+
+        
+            # Проверка того, что пересечение с зоны есть:
+            #if self.buffer_tracks[id].active_zone is not None:
+                    # Тогда сохраняем время такого момента:
+                    #self.buffer_tracks[id].timestamp_init_zone = frame_element.timestamp
 
         # Удаление старых айдишников из словаря если их время жизни > size_buffer_analytics
         keys_to_remove = []
