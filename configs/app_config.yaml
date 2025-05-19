@@ -38,7 +38,7 @@ video_reader:
 
 
 detection_node:
-  weight_pth: weights/yolov5nu_int8_openvino_model  # Путь до модели .pt или .engine (TensorRT) или квантизированной
+  weight_pth: weights/yolov8.pt  # Путь до модели .pt или .engine (TensorRT) или квантизированной
   classes_to_detect: [0]  # person из классов COCO
   confidence: 0.10  # Порог уверенности детектора (чем больше значение, тем меньше находит)
   iou: 0.7  # Порог NMS (чем больше значение, тем больше находит)
