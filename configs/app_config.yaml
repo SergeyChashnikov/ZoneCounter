@@ -61,7 +61,7 @@ show_node:
   show_roi: True  # Показывать ли зоны 
   overlay_transparent_mask: False # Заливка зон при show_roi=True (медленная операция)
   show_only_yolo_detections : False  # Отображать лишь результаты детекции без учета трекинга и прочей логики кода
-  show_track_id_different_colors: True  # Отображать цвет бокса согласно id трека, а не логике прибытия объекта
+  show_track_id_different_colors: False  # Отображать цвет бокса согласно id трека, а не логике прибытия объекта
   show_info_statistics: True  # Вывод информации о статистике в отдельном окне справа от кадра
 
 
