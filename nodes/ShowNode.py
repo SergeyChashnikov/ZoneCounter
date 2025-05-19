@@ -12,9 +12,9 @@ class ShowNode:
 
     def __init__(self, config) -> None:
         data_colors = config["general"]["colors_of_zones"]
-        self.colors_roads = {key: tuple(value) for key, value in data_colors.items()}
+        self.colors_zones = {key: tuple(value) for key, value in data_colors.items()}
         self.buffer_analytics_sec = (
-            config["general"]["buffer_analytics"] * 60 + config["general"]["min_time_life_track"]
+            config["general"]["buffer_analytics"] * 1 + config["general"]["min_time_life_track"]
         )  # столько по времени буфер набирается и информацию о статистеке выводить рано
 
         config_show_node = config["show_node"]
@@ -84,9 +84,9 @@ class ShowNode:
                 else:
                     # Отображаем каждый трек согласно цвету пересечения с зоной
                     try:
-                        start_road = frame_element.buffer_tracks[int(id)].start_road
-                        if start_road is not None:
-                            color = self.colors_roads[int(start_road)]
+                        start_zone = frame_element.buffer_tracks[int(id)].start_zone
+                        if start_zone is not None:
+                            color = self.colors_roads[int(start_zone)]
                         else:  # бокс черным цветом если еще нет информации о первой зоне
                             color = (0, 0, 0)
                     except KeyError:  # На случай если человек еще в кадре а трек уже удален
@@ -107,7 +107,7 @@ class ShowNode:
         # Построение полигонов зон
         if self.show_roi:
             for zone_id, points in frame_element.zones_info.items():
-                color = self.colors_roads[int(zone_id)]
+                color = self.colors_zones[int(zone_id)]
                 points = np.array(points, np.int32)
                 points = points.reshape((-1, 1, 2))
                 cv2.polylines(
@@ -222,7 +222,7 @@ class ShowNode:
             if frame_element.timestamp >= self.buffer_analytics_sec:
                 # Выводим информацию по зонам
                 for key, value in data_info['zones_activity'].items():
-                    text_person = f"  zone {key}: {value:.1f} persons/min"
+                    text_person = f"  zone {key}: {value:.1f} persons/sec"
                     cv2.putText(
                         img=black_image,
                         text=text_person,
