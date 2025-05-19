@@ -86,7 +86,7 @@ class ShowNode:
                     try:
                         start_zone = frame_element.buffer_tracks[int(id)].start_zone
                         if start_zone is not None:
-                            color = self.colors_roads[int(start_zone)]
+                            color = self.colors_zones[int(start_zone)]
                         else:  # бокс черным цветом если еще нет информации о первой зоне
                             color = (0, 0, 0)
                     except KeyError:  # На случай если человек еще в кадре а трек уже удален
