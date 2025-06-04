@@ -36,7 +36,7 @@ general:
 video_reader:
   src: test_videos/Pod3-1.mp4 # test_videos/test_video.mp4 # путь до файла обработки или номер камеры (int) или ссылки на m3u8 / rtsp потокVKR/ZoneCounter/test_videos/Pod3-1.mp4
   skip_secs : 0  # считываем кадры раз в <skip_secs> секунд
-  zones_info: configs/zone_coords_sample.json  # json файл с координатами зон на видеоVKR/ZoneCounter/configs/zone_coords_sample.json
+  zones_info: configs/pod3-1_zones.json  # json файл с координатами зон на видеоVKR/ZoneCounter/configs/zone_coords_sample.json
 
 
 detection_node:
