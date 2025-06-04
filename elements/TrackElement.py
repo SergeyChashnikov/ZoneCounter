@@ -17,12 +17,14 @@ class TrackElement:
         self.zone_id  = None       # в какой зоне был зафиксирован
         self.t_enter  = None       # время входа
         self.t_exit   = None       # время выхода
+        self.in_zone  = False       # ← НОВОЕ: сейчас находится внутри ROI?
         # ────────────────────────────────────
 
     def update(self, timestamp, zone_now: int | None = None):
         # Обновление времени последнего обнаружения
         self.timestamp_last = timestamp
 
+        '''
         # ───── маленькая вставка ─────
         if zone_now is not None and self.t_enter is None:
             # первое пересечение ROI
@@ -32,3 +34,4 @@ class TrackElement:
             # первый выход
             self.t_exit = timestamp
         # ─────────────────────────────
+        '''

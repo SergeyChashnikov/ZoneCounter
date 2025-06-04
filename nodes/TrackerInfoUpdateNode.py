@@ -72,16 +72,36 @@ class TrackerInfoUpdateNode:
 
             tr = self.buffer_tracks[id]
 
-            # 1) ВХОД: первый раз попал в зону
-            if zone_now is not None and tr.t_enter is None:
+            # ------- ВХОД -------------------------------------------------
+            if not tr.in_zone and zone_now is not None:
+                tr.in_zone = True
                 tr.zone_id = zone_now
                 tr.t_enter = ts_now
-                tr.t_exit  = None          # сброс, если вдруг зашёл повторно
+                tr.t_exit  = None        # на всякий случай
 
-            # 2) ВЫХОД: вышел из зоны впервые
-            if zone_now is None and tr.t_enter is not None and tr.t_exit is None:
-                tr.t_exit = ts_now
-            # -------------------------------------------------------------
+            # ------- ВЫХОД -----------------------------------------------
+            if tr.in_zone and zone_now is None:
+                tr.in_zone = False
+                tr.t_exit  = ts_now
+
+                # <— сразу пишем в CSV и обнуляем
+                if tr.t_enter is not None:
+                    duration = tr.t_exit - tr.t_enter
+                    with open("logs/zone_events.csv", "a", newline="") as f:
+                        import csv
+                        csv.writer(f).writerow(
+                            [frame_element.source,
+                            tr.id,
+                            tr.zone_id,
+                            f"{tr.t_enter:.3f}",
+                            f"{tr.t_exit:.3f}",
+                            f"{duration:.3f}"]
+                        )
+                        print(f"LOG  id={tr.id} zone={tr.zone_id}  {tr.t_enter:.2f}->{tr.t_exit:.2f}") # это для проверки закомментировать в нормальной работе
+                # готов к следующему циклу
+                tr.t_enter = None
+                tr.t_exit  = None
+                tr.zone_id = None
 
         # Удаление старых айдишников из словаря если их время жизни > size_buffer_analytics
         keys_to_remove = []

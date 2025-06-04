@@ -76,25 +76,27 @@ class CalcStatisticsNode:
         # Запись результатов обработки:
         frame_element.info = info_dictionary
 
+        '''
         # ----------- (2) запись события вход-выход ------------
         if self.log_enabled:
             for tr in frame_element.buffer_tracks.values():
-                if (
-                    tr.t_enter is not None and
-                    tr.t_exit  is not None  and
-                    not getattr(tr, "logged", False)
-                ):
+                if tr.t_enter is not None and tr.t_exit is not None:
                     duration = tr.t_exit - tr.t_enter
                     with open(self.log_path, "a", newline="") as f:
                         csv.writer(f).writerow(
                             [frame_element.source,
-                             tr.id,
-                             tr.zone_id,
-                             f"{tr.t_enter:.3f}",
-                             f"{tr.t_exit:.3f}",
-                             f"{duration:.3f}"]
+                            tr.id,
+                            tr.zone_id,
+                            f"{tr.t_enter:.3f}",
+                            f"{tr.t_exit:.3f}",
+                            f"{duration:.3f}"]
                         )
-                    tr.logged = True     # помечаем, чтобы не дублировать
+
+                    # ─── «обнуляем» для следующего цикла ───
+                    tr.t_enter = None
+                    tr.t_exit  = None
+                    tr.zone_id = None #
+        '''
 
 
         return frame_element
