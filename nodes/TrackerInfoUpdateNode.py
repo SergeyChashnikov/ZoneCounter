@@ -1,3 +1,8 @@
+# nodes/TrackerInfoUpdateNode.py
+# ──────────────────────────────────────────────────────────────
+#  Версия с фиксацией входа/выхода в ROI-зоны и передачей
+#  zone_now / bbox в TrackElement.update()
+# ──────────────────────────────────────────────────────────────
 import logging
 
 from elements.FrameElement import FrameElement
@@ -33,7 +38,11 @@ class TrackerInfoUpdateNode:
 
         id_list = frame_element.id_list
 
+        zones  = frame_element.zones_info      # {id: polygon}
+        ts_now  = frame_element.timestamp
+
         for i, id in enumerate(id_list):
+            
             # Обновление или создание нового трека
             if id not in self.buffer_tracks:
                 # Создаем новый ключ
@@ -55,6 +64,24 @@ class TrackerInfoUpdateNode:
                 if self.buffer_tracks[id].start_zone is not None:
                     # Тогда сохраняем время такого момента:
                     self.buffer_tracks[id].timestamp_init_zone = frame_element.timestamp
+
+            # -------------------------------------------------------------
+            # НОВОЕ: определяем зону, где находится центр bbox
+            bbox      = frame_element.tracked_xyxy[i]
+            zone_now = intersects_central_point(bbox, zones)
+
+            tr = self.buffer_tracks[id]
+
+            # 1) ВХОД: первый раз попал в зону
+            if zone_now is not None and tr.t_enter is None:
+                tr.zone_id = zone_now
+                tr.t_enter = ts_now
+                tr.t_exit  = None          # сброс, если вдруг зашёл повторно
+
+            # 2) ВЫХОД: вышел из зоны впервые
+            if zone_now is None and tr.t_enter is not None and tr.t_exit is None:
+                tr.t_exit = ts_now
+            # -------------------------------------------------------------
 
         # Удаление старых айдишников из словаря если их время жизни > size_buffer_analytics
         keys_to_remove = []

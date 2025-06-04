@@ -14,7 +14,7 @@ hydra:
 pipeline:
   save_video : True  # Сохранение итогового видео обработки
   send_info_db: False  # Сохраняем ли инфо в бд (требуется заранее запустить микросервисы если ставите True)
-  show_in_web: True  # Отображение результатов обработки видеопотока в веб-интерфейсе (Flask) вместо cv2.imshow
+  show_in_web: False  # Отображение результатов обработки видеопотока в веб-интерфейсе (Flask) вместо cv2.imshow
   
 #--------------------------------------------------GENERAL--------------------------------------------------
 
@@ -28,17 +28,19 @@ general:
   buffer_analytics: 1  # Количество секунд за которое производим расчет числа людей (скользящее окно расчета)
   min_time_life_track: 1 # Минимальное количество секунд жизни трека чтобы учитывать его в статистике
   count_persons_buffer_frames: 25 # Значение окна усреднеыния для расчета числа людей в текущем кадре (в frames)
+  log_zone_events: True          # включить / выключить
+  zone_log_file: "logs/zone_events.csv"
 
 # ------------------------------------------------- NODES --------------------------------------------------
 
 video_reader:
-  src: test_videos/test2.mp4 # test_videos/test_video.mp4 # путь до файла обработки или номер камеры (int) или ссылки на m3u8 / rtsp поток
+  src: test_videos/Pod3-1.mp4 # test_videos/test_video.mp4 # путь до файла обработки или номер камеры (int) или ссылки на m3u8 / rtsp потокVKR/ZoneCounter/test_videos/Pod3-1.mp4
   skip_secs : 0  # считываем кадры раз в <skip_secs> секунд
-  zones_info: configs/zones.json  # json файл с координатами зон на видео
+  zones_info: configs/zone_coords_sample.json  # json файл с координатами зон на видеоVKR/ZoneCounter/configs/zone_coords_sample.json
 
 
 detection_node:
-  weight_pth: weights/yolov8m.pt  # Путь до модели .pt или .engine (TensorRT) или квантизированной
+  weight_pth: weights/yolov5nu_int8_openvino_model  # Путь до модели .pt или .engine (TensorRT) или квантизированнойVKR/ZoneCounter/weights/yolov5nu_int8_openvino_model
   classes_to_detect: [0]  # person из классов COCO
   confidence: 0.10  # Порог уверенности детектора (чем больше значение, тем меньше находит)
   iou: 0.7  # Порог NMS (чем больше значение, тем больше находит)
